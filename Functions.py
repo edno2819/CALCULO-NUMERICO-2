@@ -1,4 +1,4 @@
-import numpy as np 
+import numpy as np
 
 
 def rosen(x:list): 
@@ -20,13 +20,44 @@ def himmelblau(X):
     b = x + y*y - 7
     return a*a + b*b
 
+   
+class Quadatic_explicit:
+    Q = np.array([[2,-1,0],[-1,2,-1],[0,-1,2]])
+    b = np.array([11, 12, 10])
+        
+    def getGradiente(self, x):
+        x = np.array(x)
+        return ((x)@self.Q - self.b)
+    
+    def get_delta_k(self, x, gk):
+        x = np.array(x)
+        d = (gk@np.transpose(gk))
+        q = (gk@(self.Q@np.transpose(gk)))
 
-def quadratica_QP(x):
-    x = np.array(x).reshape(3,3)
-    Q = [[2,-1,0],[-1,2,-1],[0,-1,2]]
-    b = [11, 12, 10]
-    result = (0.5*np.transpose(x)) * (Q@x) - (np.transpose(b)@x)
-    return result.reshape(1,9)[0]
+        return d/q
+
+    def passo(self, x, g):
+        return np.array(g)*self.get_delta_k(x, g)
+
+    def new_x(self, x, g):
+        return x - self.passo(x, g)
+
+    def funcaoQuadratica(self, x):
+        x = [x]
+        a = x@(self.Q@(np.transpose(x)*0.5))
+        b = x@np.transpose(self.b)
+        return abs(float((a-b)))
+
+    def funcaoQuadratica_args(self, x, y, z):
+        x = [x, y, z]
+        a = x@(self.Q@(np.transpose(x)*0.5))
+        b = x@np.transpose(self.b)
+        return float(a-b)
 
 
-#quadratica_QP([[2,2,5],[1,2,3],[0,6,3]])
+
+'''
+Q = Hessiana da função
+deltaf(x) = Gradiente da função
+g0 = deltaf(x0) 
+'''

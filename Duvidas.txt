@@ -1,0 +1,12 @@
+1 - Todos os 4 algotimos (Fibonacci, Golden Line, Método da pesquisa por divisão de intervalos, Função explicita de Alfa_k), serão
+apenas para retorna o valor da 'taxa de aprendizagem' do algoritimo do gradiente descente?
+
+2 - O 'tamanho do passo'(Δf(x)) de todos os métodos vai ser cálculado pela métodos das diferenças finitas centradas (Aproximação das derivadas)?
+Caso sim, teriamos que usar esse método pra calcular as derivadas parciais de cada variável das funções?
+
+3 - Analisando o método 'Fibonacci' proposto no livro ele n calcula a taxa de aprendizado, mas todo o passo (αk * Δf(x)).
+    Já o método Método da pesquisa por divisão de intervalos, támbem n calcula a taxa de aprendizado, mas apenas
+    reduz os intervalos de busca. E todos esses para uma dimensão.
+
+4 - Essa 'função explicita' para a 'função quadratica' seria o modelo tradicional?  Digo, definindo a 'taxa de aprendizado'
+    nos parâmetros da função como 0.001. ficando assim: (b + 0.001 * Δf(x))
